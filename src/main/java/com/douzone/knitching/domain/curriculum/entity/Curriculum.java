@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.douzone.knitching.domain.pattern.entity.Pattern;
-import com.douzone.knitching.domain.instructor.entity.Instructor;
+import com.douzone.knitching.domain.user.entity.User;
 
 @Entity
 @Table(name = "curriculum")
@@ -29,9 +29,9 @@ public class Curriculum {
     private Pattern pattern;
 
     @ManyToOne
-    @JoinColumn(name = "INST_ID", nullable = false)
-    @Schema(description = "강사 정보")
-    private Instructor instructor;
+    @JoinColumn(name = "INST_ID", nullable = false, referencedColumnName = "USER_ID")
+    @Schema(description = "강사 정보 (User 엔티티)")
+    private User instructor;
 
     @Column(name = "IS_CUSTOM", columnDefinition = "TINYINT(1) DEFAULT 0")
     @Schema(description = "개인용 도안 여부")

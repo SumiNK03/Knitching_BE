@@ -29,8 +29,8 @@ public class MatchingRequestService {
     }
 
     @Transactional(readOnly = true)
-    public List<MatchingRequest> getMatchingRequestsByInstId(Long instId) {
-        return matchingRequestRepository.findByInstructorInstId(instId);
+    public List<MatchingRequest> getMatchingRequestsByInstId(Long userId) {
+        return matchingRequestRepository.findByInstructorUserId(userId);
     }
 
     @Transactional(readOnly = true)

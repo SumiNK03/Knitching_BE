@@ -8,5 +8,9 @@ import java.util.List;
 @Repository
 public interface MatchingRequestRepository extends JpaRepository<MatchingRequest, Long> {
     List<MatchingRequest> findByEnrollmentEnrollId(Long enrollId);
-    List<MatchingRequest> findByInstructorInstId(Long instId);
+    
+    /**
+     * instructor 필드가 이제 User를 참조하므로, User의 userId로 조회
+     */
+    List<MatchingRequest> findByInstructorUserId(Long userId);
 }
