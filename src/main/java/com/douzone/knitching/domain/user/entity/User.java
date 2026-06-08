@@ -1,13 +1,25 @@
 package com.douzone.knitching.domain.user.entity;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import com.douzone.knitching.domain.instructor.entity.Instructor;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import io.swagger.v3.oas.annotations.media.Schema;
-import com.douzone.knitching.domain.instructor.entity.Instructor;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -47,6 +59,19 @@ public class User {
     @Column(name = "CREATED_AT", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
     @Schema(description = "계정 생성 일시")
     private LocalDateTime createdAt;
+
+    @Column(name = "NICKNAME", length = 50)
+    @Schema(description = "닉네임")
+    private String nickname;
+
+    @Column(name = "GENDER", columnDefinition = "ENUM('male', 'female', 'other')")
+    @Enumerated(EnumType.STRING)
+    @Schema(description = "성별")
+    private GenderType gender;
+
+    @Column(name = "ADDRESS", length = 255)
+    @Schema(description = "주소")
+    private String address;
 
     // 양방향 관계: Instructor와의 1:1 관계 (선택사항, 강사인 경우만 존재)
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

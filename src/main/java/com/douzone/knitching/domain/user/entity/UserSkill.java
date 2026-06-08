@@ -38,7 +38,7 @@ public class UserSkill {
     private Video video;
 
     @Column(name = "LEVEL", columnDefinition = "INT DEFAULT 1")
-    @Schema(description = "기술 숐련도")
+    @Schema(description = "기술 숙련도")
     private Integer level;
 
     @Column(name = "UPDATED_AT", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
