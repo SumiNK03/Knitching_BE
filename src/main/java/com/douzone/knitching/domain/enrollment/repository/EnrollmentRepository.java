@@ -8,5 +8,7 @@ import java.util.List;
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     List<Enrollment> findByUserUserId(Long userId);
+    List<Enrollment> findByUserUserIdOrderByCreatedAtDesc(Long userId);
     List<Enrollment> findByCurriculumCurriId(Long curriId);
+    boolean existsByUserUserIdAndCurriculumPatternPatternId(Long userId, Long patternId);
 }

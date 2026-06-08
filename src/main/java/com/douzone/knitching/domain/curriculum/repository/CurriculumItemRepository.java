@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface CurriculumItemRepository extends JpaRepository<CurriculumItem, Long> {
     List<CurriculumItem> findByCurriculumCurriId(Long curriId);
+    List<CurriculumItem> findByCurriculumCurriIdOrderByStepOrderAsc(Long curriId);
 }

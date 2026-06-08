@@ -1,5 +1,6 @@
 package com.douzone.knitching.domain.curriculum.controller;
 
+import com.douzone.knitching.domain.curriculum.dto.CompleteUserProgressResponseDTO;
 import com.douzone.knitching.domain.curriculum.entity.UserProgress;
 import com.douzone.knitching.domain.curriculum.service.UserProgressService;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,15 @@ public class UserProgressController {
         userProgress.setProgressId(progressId);
         UserProgress updatedProgress = userProgressService.updateUserProgress(userProgress);
         return ResponseEntity.ok(updatedProgress);
+    }
+
+    @Operation(summary = "학습 진도 완료 처리", description = "진도 ID로 해당 학습 진도를 완료 처리합니다")
+    @ApiResponse(responseCode = "200", description = "완료 처리 성공")
+    @ApiResponse(responseCode = "404", description = "진도 미존재")
+    @PatchMapping("/{progressId}/complete")
+    public ResponseEntity<CompleteUserProgressResponseDTO> completeUserProgress(@PathVariable Long progressId) {
+        CompleteUserProgressResponseDTO response = userProgressService.completeUserProgress(progressId);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "학습 진도 삭제", description = "학습 진도를 삭제합니다")

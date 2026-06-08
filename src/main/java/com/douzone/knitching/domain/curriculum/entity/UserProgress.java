@@ -43,7 +43,14 @@ public class UserProgress {
 
     @PrePersist
     protected void onCreate() {
-        if (isCompleted == null) isCompleted = true;
-        completedAt = LocalDateTime.now();
+        if (isCompleted == null) {
+            isCompleted = false;
+        }
+        if (Boolean.TRUE.equals(isCompleted) && completedAt == null) {
+            completedAt = LocalDateTime.now();
+        }
+        if (Boolean.FALSE.equals(isCompleted)) {
+            completedAt = null;
+        }
     }
 }
